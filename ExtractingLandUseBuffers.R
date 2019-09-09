@@ -19,10 +19,11 @@ library(raster)
 library(GISTools)
 library(sf)
 
-setwd("C:/Users/barre/Desktop/") # working directory for saving crossed tables
-dir.posPoints = "C:/Users/barre/Documents/SIG/NacellesFEE" # point files location
-dir.posEnvironmentalLayers = "C:/Users/barre/Documents/SIG/CESBIO2017" # shapefiles location, here one per French departement, all including all land-use types
-points = "Nacelles_Suivies_3092019" # point file name, without extension
+setwd("./") # working directory for saving crossed tables
+dir.posPoints = "./" # point files location
+dir.posEnvironmentalLayers = "./" # shapefiles location, here one per French departement, all including all land-use types
+dir.posFrenchDepartment = "./" # French department shapefile location
+points = "points" # point file name, without extension
 
 # Opening point shapefile
 
@@ -44,7 +45,7 @@ names(Buffer)[[6]] <- "ID" # ensure that your identifier column is well named ID
 
 # To know which layers include to avoid further empty intersections
 
-FrenchDepartements<-readOGR(dsn = "C:/Users/barre/Documents/SIG/GEOFLA_2-2_DEPARTEMENT_SHP_LAMB93_FXX_2016-06-28/GEOFLA/1_DONNEES_LIVRAISON_2016-06-00235/GEOFLA_2-2_SHP_LAMB93_FR-ED161/DEPARTEMENT/surface", layer = "DEPARTEMENT")
+FrenchDepartements<-readOGR(dsn = dir.posFrenchDepartment, layer = "DEPARTEMENT")
 
 FrenchDepartements <- spTransform (FrenchDepartements, CRS ("+init=epsg:2154"))
 
