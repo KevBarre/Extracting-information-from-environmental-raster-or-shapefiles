@@ -8,7 +8,7 @@ http://osr-cesbio.ups-tlse.fr/echangeswww/TheiaOSO/vecteurs_2017/liste_vecteurs.
 - ExtractingLandUseBuffers.R # adapted for shapefile structure in the same form than cesbio shapefiles provided as example
 
 # Data used
-- departement_01.shp # first French department used as example
-- departement_39.shp # second French department used as example
+- departement_01.shp # first French department used as example which must be downloaded here: http://osr-cesbio.ups-tlse.fr/echangeswww/TheiaOSO/vecteurs_2017/departement_01.zip
+- departement_39.shp # second French department used as example which must be downloaded here: http://osr-cesbio.ups-tlse.fr/echangeswww/TheiaOSO/vecteurs_2017/departement_39.zip
 - points.shp # random points used as example
 - DEPARTEMENT.shp # French departement layer allowing to only select in the script department layers (when a lot of layers are in the folder) containing points
