@@ -10,7 +10,12 @@
 # id = column name to keep in the output (ex: "inc")
 # dir.posEnvironmentalLayers = directory of raster location (only one)
 # WorkingDirectory = directory at which to save the outpout (ex: "C:/Users/barre/Desktop/")
-extractLandUseRaster=function(dir.posPoints, name.points,bw,id,dir.posEnvironmentalLayers,WorkingDirectory)
+extractLandUseRaster=function(dir.posPoints, 
+                              name.points, 
+                              bw, 
+                              id, 
+                              dir.posEnvironmentalLayers, 
+                              WorkingDirectory)
 {
   # Required packages
   require(maptools)
