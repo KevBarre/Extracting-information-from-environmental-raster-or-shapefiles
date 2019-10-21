@@ -4,6 +4,11 @@ get theses proportions for any lower sizes of buffers. Outputs are in form of sh
 Mainly adapted for land-use shapefiles containing all types of land-use such as cesbio landcover shapefiles which can be downloaded here:
 http://osr-cesbio.ups-tlse.fr/echangeswww/TheiaOSO/vecteurs_2017/liste_vecteurs.html
 
+# Extracting-land-use-proportion-around-spatial-points-from-one-environmental-raster
+This script allows to extract land-use proportions around points in several radius sizes from a raster layer.
+Land-use layer used available here: http://osr-cesbio.ups-tlse.fr/echangeswww/TheiaOSO/OCS_2018_CESBIO.tif
+Encapsulated in a function.
+
 # Script used
 - ExtractingLandUseBuffers.R # adapted for shapefile structure in the same form than cesbio shapefiles provided as example
 
