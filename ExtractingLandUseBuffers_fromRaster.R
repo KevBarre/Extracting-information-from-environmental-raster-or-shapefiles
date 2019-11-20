@@ -4,12 +4,21 @@
 # With the help of Yves Bas
 ##############################################################################################################
 
-# dir.posPoints = directory of point file location
-# name.points = point file name, without extension
-# bw = one or several buffer size in meter (ex : 50 or c(50,100))
+# dir.posPoints = directory of point file location (ex: "C:/Users/barre/Desktop/")
+# name.points = point file name, without extension (ex: "points")
+# bw = one or several buffer size in meter (ex : 50 or c(50,100,200))
 # id = column name to keep in the output (ex: "inc")
-# dir.posEnvironmentalLayers = directory of raster location (only one)
+# dir.posEnvironmentalLayers = directory of raster location (only one) (ex: "C:/Users/barre/Desktop/raster.tiff")
 # WorkingDirectory = directory at which to save the outpout (ex: "C:/Users/barre/Desktop/")
+
+# Example :
+# extractLandUseRaster=function(dir.posPoints = "C:/Users/barre/Desktop/", 
+#                               name.points = "points", 
+#                               bw = c(50,100,200), 
+#                               id = "inc", 
+#                               dir.posEnvironmentalLayers = "C:/Users/barre/Desktop/raster.tiff", 
+#                               WorkingDirectory = "C:/Users/barre/Desktop/")
+  
 extractLandUseRaster=function(dir.posPoints, 
                               name.points, 
                               bw, 
@@ -18,15 +27,19 @@ extractLandUseRaster=function(dir.posPoints,
                               WorkingDirectory)
 {
   # Required packages
-  require(maptools)
-  library(sp)
-  library(raster)
-  library(data.table)
-  
+  load <- function(pkg){
+    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+    if (length(new.pkg))
+      install.packages(new.pkg, dependencies = TRUE)
+    sapply(pkg, require, character.only = TRUE)
+  } 
+  packages <- c("maptools","sp","raster","raster","lavaan")
+  load(packages)
+ 
   setwd(WorkingDirectory)
   
   # Opening point shapefile
-  Points<-readOGR(dsn = dir.posPoints, layer = name.points)
+  Points<-readOGR(dsn = C:/Users/barre/documents/GitHub/Extracting-land-use-proportion-around-spatial-points-from-environmental-shapefiles, layer = name.points)
   
   # Converts coordinates into Lambert 93 (2154)
   Points <- spTransform (Points, CRS ("+init=epsg:2154"))
