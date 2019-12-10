@@ -10,7 +10,8 @@ Land-use layer used available here: http://osr-cesbio.ups-tlse.fr/echangeswww/Th
 Encapsulated in a function.
 
 # Script used
-- ExtractingLandUseBuffers.R # adapted for shapefile structure in the same form than cesbio shapefiles provided as example
+- ExtractingLandUseBuffers.R # adapted for shapefile environmental layer (time-consuming)
+- ExtractingLandUseBuffers_fromRaster.R # adapted for raster environmental layer (fast)
 
 # Data used
 - departement_01.shp # first French department used as example which must be downloaded here: http://osr-cesbio.ups-tlse.fr/echangeswww/TheiaOSO/vecteurs_2017/departement_01.zip
