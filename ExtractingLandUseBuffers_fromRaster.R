@@ -7,7 +7,7 @@
 # dir.posPoints = directory of point file location (ex: "C:/Users/barre/Desktop/")
 # name.points = point file name, without extension (ex: "points")
 # bw = one or several buffer size in meter (ex : 50 or c(50,100,200))
-# id = column name to keep in the output (ex: "inc")
+# id = column name of the point file corresponding to the point IDs (ex: "inc")
 # dir.posEnvironmentalLayers = directory of raster location (only one) (ex: "C:/Users/barre/Desktop/raster.tiff")
 # WorkingDirectory = directory at which to save the outpout (ex: "C:/Users/barre/Desktop/")
 
@@ -18,7 +18,7 @@
 #                               id = "inc", 
 #                               dir.posEnvironmentalLayers = "C:/Users/barre/Desktop/raster.tiff", 
 #                               WorkingDirectory = "C:/Users/barre/Desktop/")
-  
+
 extractLandUseRaster=function(dir.posPoints, 
                               name.points, 
                               bw, 
@@ -33,16 +33,16 @@ extractLandUseRaster=function(dir.posPoints,
       install.packages(new.pkg, dependencies = TRUE)
     sapply(pkg, require, character.only = TRUE)
   } 
-  packages <- c("maptools","sp","raster","rgdal", "data.table","lavaan")
+  packages <- c("maptools","sf","raster","rgdal", "data.table","lavaan")
   load(packages)
- 
+  
   setwd(WorkingDirectory)
   
   # Opening point shapefile
-  Points<-readOGR(dsn = dir.posPoints, layer = name.points)
+  Points<-st_read(dsn = dir.posPoints, layer = name.points)
   
   # Converts coordinates into Lambert 93 (2154)
-  Points <- spTransform (Points, CRS ("+init=epsg:2154"))
+  Points <- st_transform(Points,crs=2154)
   
   bufwidth <- bw
   
@@ -57,22 +57,18 @@ extractLandUseRaster=function(dir.posPoints,
   
   for (j in bufwidth) {
     
-    # Creating buffer around points
-    
-    Buffer = buffer(Points, width = j, dissolve = FALSE) 
-    
     #plot(Points, add=T)
     
     HabufProp=list()
     
-    for (i in 1:nrow(Buffer)) {
-    #for (i in 1:10) {
+    Hab_extraction <- extract(Hab,Points,buffer=j)
+    
+    for (i in 1:length(Hab_extraction)) {
+      #for (i in 1:10) {
       
-      Habuf=extract(Hab,Buffer[i,])
+      HabufProp[[i]]=as.data.table(t(as.matrix(table(Hab_extraction[[i]]))/length(Hab_extraction[[i]])))
       
-      HabufProp[[i]]=as.data.table(t(as.matrix(table(Habuf))/sum(table(Habuf))))
-      
-      if(i==nrow(Buffer)){print(paste("BufferSize",j,Sys.time()))}
+      if(i==length(Hab_extraction)){print(paste("BufferSize",j,Sys.time()))}
       
     }
     
