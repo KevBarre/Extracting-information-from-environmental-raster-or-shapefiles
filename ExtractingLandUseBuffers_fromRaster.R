@@ -1,7 +1,7 @@
 ##############################################################################################################
 # This script allows to extract land-use proportions around points in several radius from a raster layer.
 # Land-use layers used available here: http://osr-cesbio.ups-tlse.fr/echangeswww/TheiaOSO/OCS_2018_CESBIO.tif
-# With the help of Yves Bas
+# With the help of Yves Bas and Léa Mariton
 ##############################################################################################################
 
 # dir.posPoints = directory of point file location (ex: "C:/Users/barre/Desktop/")
